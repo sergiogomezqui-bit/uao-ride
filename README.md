@@ -1,4 +1,4 @@
-# UAO Ride 🚗
+# UAO Ride 
 
 App móvil de **carpooling universitario**: estudiantes de la UAO publican viajes, otros reservan cupo, ven la ruta en un mapa, siguen al conductor en vivo y chatean con el grupo. Incluye un panel de administración.
 
