@@ -8,7 +8,7 @@ App móvil de **carpooling universitario**: estudiantes de la UAO publican viaje
 
 | Integrante | Rama | Responsabilidad | Estado |
 |---|---|---|---|
-| ([@sergiogomezqui-bit](https://github.com/sergiogomezqui-bit)) | `feature/auth-perfil` | Autenticación, registro, perfil con cámara, menú, rutas, documentación | ✅ Listo |
+| Sergio Gómez ([@sergiogomezqui-bit](https://github.com/sergiogomezqui-bit)) | `feature/auth-perfil` | Autenticación, registro, perfil con cámara, menú, rutas, documentación | ✅ Listo |
 | [@julianviafara](https://github.com/julianviafara) | `feature/viajes-mapa` | Viajes, mapa, GPS, ubicación en vivo, reservas | ⏳ [Tareas](docs/TAREAS_INTEGRANTE_2.md) |
 | [@AndreRz](https://github.com/AndreRz) | `feature/chat-admin` | Chat en tiempo real, panel admin, reglas de Firestore | ⏳ [Tareas](docs/TAREAS_INTEGRANTE_3.md) |
 
