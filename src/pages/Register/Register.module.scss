@@ -1,0 +1,35 @@
+.hero {
+  background: linear-gradient(160deg, var(--ion-color-primary), #8f0f14);
+  color: #fff;
+  text-align: center;
+  padding: 56px 24px 36px;
+  border-radius: 0 0 32px 32px;
+
+  h1 {
+    margin: 8px 0 0;
+    font-size: 1.6rem;
+    font-weight: 800;
+  }
+}
+
+.logo {
+  font-size: 48px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 28px 24px;
+}
+
+.alt {
+  text-align: center;
+  font-size: 0.9rem;
+
+  a {
+    color: var(--ion-color-primary);
+    font-weight: 600;
+    text-decoration: none;
+  }
+}
