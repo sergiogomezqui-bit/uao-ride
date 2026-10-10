@@ -6,7 +6,7 @@ import {
   signOut,
   updateProfile,
 } from 'firebase/auth'
-import { doc, onSnapshot, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore'
+import { doc, onSnapshot, serverTimestamp, setDoc } from 'firebase/firestore'
 import { auth, db } from '../firebase'
 
 const AuthContext = createContext(null)
@@ -26,20 +26,36 @@ export function AuthProvider({ children }) {
         return
       }
       // El perfil (rol, foto) vive en Firestore y se escucha en tiempo real
+      const fromAuth = (profile = {}) => ({
+        uid: firebaseUser.uid,
+        email: firebaseUser.email,
+        name: profile.name || firebaseUser.displayName || firebaseUser.email,
+        role: profile.role || 'user',
+        photo: profile.photo || null,
+      })
+
       unsubProfile = onSnapshot(
         doc(db, 'users', firebaseUser.uid),
         (snap) => {
-          const profile = snap.data() || {}
-          setUser({
-            uid: firebaseUser.uid,
-            email: firebaseUser.email,
-            name: profile.name || firebaseUser.displayName || firebaseUser.email,
-            role: profile.role || 'user',
-            photo: profile.photo || null,
-          })
+          setUser(fromAuth(snap.data()))
           setLoading(false)
+          // Auto-reparacion: si el perfil no existe (registro interrumpido), se crea
+          if (!snap.exists() && !snap.metadata.fromCache) {
+            setDoc(snap.ref, {
+              name: firebaseUser.displayName || firebaseUser.email,
+              email: firebaseUser.email,
+              role: 'user',
+              photo: null,
+              createdAt: serverTimestamp(),
+            }).catch((err) => console.error('No se pudo crear el perfil:', err))
+          }
         },
-        () => setLoading(false)
+        (err) => {
+          // Aunque Firestore falle, la sesion de Auth sigue siendo valida
+          console.error('Error leyendo el perfil:', err)
+          setUser(fromAuth())
+          setLoading(false)
+        }
       )
     })
 
@@ -65,7 +81,11 @@ export function AuthProvider({ children }) {
 
   const logout = () => signOut(auth)
 
-  const updateUser = (data) => updateDoc(doc(db, 'users', auth.currentUser.uid), data)
+  // merge: crea el documento si no existia y nunca pisa el rol
+  const updateUser = async (data) => {
+    await setDoc(doc(db, 'users', auth.currentUser.uid), data, { merge: true })
+    if (data.name) await updateProfile(auth.currentUser, { displayName: data.name })
+  }
 
   return (
     <AuthContext.Provider value={{ user, loading, login, register, logout, updateUser }}>
