@@ -78,6 +78,6 @@ trips/{tripId}/messages/{id}  { uid, name, text, createdAt }
 |---|---|---|
 | `feature/auth-perfil` | Sergio Gómez (@sergiogomezqui-bit) | `AuthContext`, `Login`, `Register`, `Profile`, `Menu`, rutas, documentación |
 | `feature/viajes-mapa` | @julianviafara | `MapView`, `CardItem`, `Home`, `TripCreate`, `TripDetail`, `MyTrips`, hooks de viajes y GPS ([tareas](TAREAS_INTEGRANTE_2.md)) |
-| `feature/chat-admin` | @AndreRz | `Chat`, `useChat`, páginas Admin, `firestore.rules` ([tareas](TAREAS_INTEGRANTE_3.md)) |
+| `feature/chat-admin` | @AndruRz | `Chat`, `useChat`, páginas Admin, `firestore.rules` ([tareas](TAREAS_INTEGRANTE_3.md)) |
 
 Las tres ramas deben integrarse en `main` con commits de merge.

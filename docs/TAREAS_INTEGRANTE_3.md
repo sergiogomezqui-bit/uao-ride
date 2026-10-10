@@ -1,4 +1,4 @@
-# Tareas — Integrante 3 (@AndreRz)
+# Tareas — Integrante 3 (@AndruRz)
 
 **Rama:** `feature/chat-admin` · **Tema:** chat en tiempo real, panel de administrador y seguridad de Firestore.
 
