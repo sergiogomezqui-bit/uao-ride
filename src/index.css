@@ -1,0 +1,15 @@
+:root {
+  --ion-color-primary: #d71920;
+  --ion-color-primary-rgb: 215, 25, 32;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #bd161c;
+  --ion-color-primary-tint: #db3036;
+  --ion-font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
