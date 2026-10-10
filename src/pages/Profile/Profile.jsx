@@ -26,25 +26,36 @@ export default function Profile() {
 
   // Sensor: camara. La foto se guarda reducida en el perfil de Firestore
   const takePhoto = async () => {
+    let photo
     try {
-      const photo = await Camera.getPhoto({
+      photo = await Camera.getPhoto({
         quality: 50,
         width: 256,
         allowEditing: false,
         resultType: CameraResultType.DataUrl,
         source: CameraSource.Prompt,
       })
+    } catch {
+      return // el usuario cancelo
+    }
+    try {
       await updateUser({ photo: photo.dataUrl })
       setToast('Foto actualizada')
-    } catch {
-      /* el usuario cancelo */
+    } catch (err) {
+      console.error(err)
+      setToast('No se pudo guardar la foto. Revisa las reglas de Firestore.')
     }
   }
 
   const saveName = async () => {
     if (!name.trim()) return
-    await updateUser({ name: name.trim() })
-    setToast('Perfil guardado')
+    try {
+      await updateUser({ name: name.trim() })
+      setToast('Perfil guardado')
+    } catch (err) {
+      console.error(err)
+      setToast('No se pudo guardar. Revisa las reglas de Firestore.')
+    }
   }
 
   return (
