@@ -16,7 +16,7 @@ import {
 import { camera as cameraIcon } from 'ionicons/icons'
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera'
 import { useAuth } from '../../context/AuthContext'
-import { initials } from '../../helpers'
+import { initials, resizeImage } from '../../helpers'
 import styles from './Profile.module.scss'
 
 export default function Profile() {
@@ -39,7 +39,7 @@ export default function Profile() {
       return // el usuario cancelo
     }
     try {
-      await updateUser({ photo: photo.dataUrl })
+      await updateUser({ photo: await resizeImage(photo.dataUrl) })
       setToast('Foto actualizada')
     } catch (err) {
       console.error(err)
