@@ -62,3 +62,23 @@ export function authErrorMessage(error) {
   }
   return messages[error?.code] || 'Ocurrió un error, intenta de nuevo'
 }
+
+// Reduce una imagen (dataURL) a un cuadrado de `size` px en JPEG.
+// Firestore limita cada documento a 1 MB, y la camara web devuelve la foto completa.
+export function resizeImage(dataUrl, size = 256, quality = 0.7) {
+  return new Promise((resolve, reject) => {
+    const img = new Image()
+    img.onload = () => {
+      const side = Math.min(img.width, img.height)
+      const canvas = document.createElement('canvas')
+      canvas.width = size
+      canvas.height = size
+      canvas
+        .getContext('2d')
+        .drawImage(img, (img.width - side) / 2, (img.height - side) / 2, side, side, 0, 0, size, size)
+      resolve(canvas.toDataURL('image/jpeg', quality))
+    }
+    img.onerror = reject
+    img.src = dataUrl
+  })
+}
