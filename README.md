@@ -62,7 +62,7 @@ React (hooks, context, rutas) · Ionic · Sensores (cámara y GPS) · Memoria (l
    cp .env.example .env
    ```
    y completar los valores `VITE_FIREBASE_*`.
-3. Publicar las reglas de seguridad (pegar el contenido de [firestore.rules](firestore.rules) en *Firestore → Reglas*, o con `firebase deploy --only firestore:rules`).
+3. Las reglas de seguridad ya están en [firestore.rules](firestore.rules); publícalas con `firebase deploy --only firestore:rules`.
 4. Instalar y correr:
    ```bash
    npm install
