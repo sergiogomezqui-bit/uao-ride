@@ -68,7 +68,11 @@ React (hooks, context, rutas) · Ionic · Sensores (cámara y GPS) · Memoria (l
    npm install
    npm run dev
    ```
-5. **Crear un administrador:** registra un usuario y en Firestore → colección `users` cambia su campo `role` a `admin`.
+5. **Crear un administrador:** el usuario se registra en la app y luego, con `firebase login` hecho y `firebase-tools` instalado:
+   ```bash
+   node scripts/set-role.cjs correo@ejemplo.com admin
+   ```
+   (o editar el campo `role` en Firestore → `users`). Las reglas impiden que alguien se asigne el rol desde la app.
 
 ### App nativa (Android/iOS)
 
